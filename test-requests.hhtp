@@ -1,0 +1,6 @@
+# TEST HTTP requests
+### use with: REST Client extension
+
+### GET all items
+
+GET http://localhost:3000/items
