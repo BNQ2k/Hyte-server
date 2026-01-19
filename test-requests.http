@@ -2,14 +2,24 @@
 ### use with: REST Client extension
 
 ### GET all items
-
 GET http://localhost:3000/items
 
 
-### Add new item
+### get item with id 1
+GET http://localhost:3000/items/1
 
 
+### add new item
 POST http://localhost:3000/items
 Content-type: application/json
 
-{"name": "mandariini"}
+{"name": "mandariini", "weight": 86}
+
+### delete item with id 2
+DELETE http://localhost:3000/items/2
+
+### update item with id 1
+PUT http://localhost:3000/items/3
+Content-type: application/json
+
+{"name": "updated kivi")
