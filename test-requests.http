@@ -1,6 +1,10 @@
 # TEST HTTP requests
 ### use with: REST Client extension
 
+
+### items.js
+
+
 ### GET all items
 GET http://localhost:3000/items
 
@@ -13,13 +17,42 @@ GET http://localhost:3000/items/1
 POST http://localhost:3000/items
 Content-type: application/json
 
-{"name": "mandariini", "weight": 86}
+{"name": "mandariini"}
 
 ### delete item with id 2
 DELETE http://localhost:3000/items/2
 
-### update item with id 1
+### update item with id 3
 PUT http://localhost:3000/items/3
 Content-type: application/json
 
-{"name": "updated kivi")
+{"name": "updated kivi"}
+
+
+### users.js
+
+
+### GET all users
+GET http://localhost:3000/api/users
+
+### Get user with id 4 (joni)
+GET http://localhost:3000/api/users/4
+
+### Add new user
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "Matti Meikäläinen",
+  "email": "matti.meikalainen@hotmail.com"
+}
+### update
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+  "name": "Juhani Päivitetty",
+  "email": "juhani.uusi@yahoo.com"
+}
+### deletoidaan jesse
+DELETE http://localhost:3000/api/users/6
