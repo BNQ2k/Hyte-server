@@ -1,14 +1,18 @@
 //TODO: add users mock data and endpoints
 let users = [
-  { id: 1, name: 'Juhani', email: 'juhani@gmail.com' },
-  { id: 2, name: 'Bena', email: 'bena@hotmail.com' },
-  { id: 3, name: 'Capy', email: 'capy@outlook.com' },
-  { id: 4, name: 'Joni', email: 'jonikauk@kivi.fi' },
-  { id: 5, name: 'Mikko', email: 'mikko@kivi.com' },
-  { id: 6, name: 'Jesse', email: 'jesse@lonkero.com'},
+  { id: 1, name: 'Juhani', password: "sigmaballs", email: 'juhani@gmail.com' },
+  { id: 2, name: 'Bena', password: "nakkikiska1",email: 'bena@hotmail.com' },
+  { id: 3, name: 'Capy', password: "gargefps", email: 'capy@outlook.com' },
+  { id: 4, name: 'Joni', password: "lobermoo-peruna",email: 'jonikauk@kivi.fi' },
+  { id: 5, name: 'Mikko', password: "mikkopetteri-gwagon",email: 'mikko@kivi.com' },
+  { id: 6, name: 'Jesse', password: "palikkamies",email: 'jesse@lonkero.com'},
 ];
 // hakee kaikki
 const getUsers = (req, res) => {
+  for (let i=0; i<users.length; i++) {
+    delete users[i].password;
+    users[i].email = 'private';
+  }
   res.json(users);
 };
 
