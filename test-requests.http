@@ -43,9 +43,21 @@ POST {{apiurl}}/users
 Content-Type: application/json
 
 {
-  "name": "Matti Meikäläinen",
+  "username": "Matti Meikäläinen",
+  "password": "masamies",
   "email": "matti.meikalainen@hotmail.com"
 }
+
+### user login
+POST {{apiurl}}/users/login
+Content-type: application/json
+
+{
+  "name": "Joni",
+  "password": "lobermooperuna",
+}
+
+
 ### update
 PUT {{apiurl}}/users/1
 Content-Type: application/json

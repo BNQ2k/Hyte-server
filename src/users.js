@@ -3,17 +3,25 @@ let users = [
   { id: 1, name: 'Juhani', password: "sigmaballs", email: 'juhani@gmail.com' },
   { id: 2, name: 'Bena', password: "nakkikiska1",email: 'bena@hotmail.com' },
   { id: 3, name: 'Capy', password: "gargefps", email: 'capy@outlook.com' },
-  { id: 4, name: 'Joni', password: "lobermoo-peruna",email: 'jonikauk@kivi.fi' },
+  { id: 4, name: 'Joni', password: "lobermooperuna",email: 'jonikauk@kivi.fi' },
   { id: 5, name: 'Mikko', password: "mikkopetteri-gwagon",email: 'mikko@kivi.com' },
   { id: 6, name: 'Jesse', password: "palikkamies",email: 'jesse@lonkero.com'},
 ];
 // hakee kaikki
 const getUsers = (req, res) => {
-  for (let i=0; i<users.length; i++) {
-    delete users[i].password;
-    users[i].email = 'private';
+  const publicUsers = [];
+
+  for (let i = 0; i < users.length; i++) {
+    // uusi objekti, johon poimitaan id, username ja email
+    const user = {
+      id: users[i].id,
+      username: users[i].username,
+      email: 'private'
+    };
+    publicUsers.push(user);
   }
-  res.json(users);
+
+  res.json(publicUsers);
 };
 
 // id:llä
@@ -28,10 +36,31 @@ const getUserById = (req, res) => {
 
 // uusi user
 const postUser = (req, res) => {
-  const newId = users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
-  const newUser = { id: newId, ...req.body };
-  users.push(newUser);
-  res.status(201).json({ message: 'User added', user: newUser });
+  const newUser = req.body;
+  if (!(newUser.username && newUser.password && newUser.email)) {
+    return res.status(400).json({error: 'required fields missing'})
+  }
+  // HUOM: ÄLÄ ikinä loggaa käyttäjätietoja ensimmäisten pakollisten testien jälkeen!!! (tietosuoja)
+  // console.log('registering new user', newUser);
+  const newId = users[users.length-1].id + 1;
+  users.push({newId, ...newUser});
+  delete newUser.password;
+  console.log('users', users);
+  res.status(201).json({message: 'new user added', user_id: newId });
+};
+
+const postLogin = (req, res) => {
+  const {username, password} = req.body;
+  // hakee käyttäjä-objektin nimen perusteella
+  const userFound = users.find(user => username === user.username);
+  if (userFound) {
+    if (userFound.password === password) {
+      delete userFound.password;
+      return res.json({message: 'login ok', user: userFound});
+    }
+    return res.status(403).json({error: 'invalid password'});
+  }
+  res.status(404).json({error: 'user not found'});
 };
 
 // edit user
@@ -55,4 +84,4 @@ const delUser = (req, res) => {
     res.status(404).json({ message: 'User not found' });
   }
 };
-export { getUsers, getUserById, postUser, putUser, delUser };
+export { getUsers, getUserById, postUser, postLogin, putUser, delUser };
