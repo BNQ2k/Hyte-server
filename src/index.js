@@ -17,11 +17,11 @@ app.get('/api', (req, res) => {
 });
 
 // items
-app.get('/items', getItems);
-app.get('/items/:id', getItemsById);
-app.put('/items/:id',putItem);
-app.delete('/items/:id', delItem);
-app.post('/items/:id', postItem);
+app.get('/api/items', getItems);
+app.get('/api/items/:id', getItemsById);
+app.put('/api/items/:id',putItem);
+app.delete('/api/items/:id', delItem);
+app.post('/api/items/', postItem);
 
 // users
 app.get('/api/users', getUsers);

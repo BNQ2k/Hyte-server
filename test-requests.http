@@ -1,29 +1,29 @@
 # TEST HTTP requests
 ### use with: REST Client extension
-
+@apiurl = http://localhost:3000/api
 
 ### items.js
 
 
 ### GET all items
-GET http://localhost:3000/items
+GET {{apiurl}}/items
 
 
 ### get item with id 1
-GET http://localhost:3000/items/1
+GET {{apiurl}}/items/1
 
 
 ### add new item
-POST http://localhost:3000/items
+POST {{apiurl}}/items
 Content-type: application/json
 
-{"name": "mandariini"}
+{"name": "mandariini", "weight": 86}
 
 ### delete item with id 2
-DELETE http://localhost:3000/items/2
+DELETE {{apiurl}}/items/2
 
 ### update item with id 3
-PUT http://localhost:3000/items/3
+PUT {{apiurl}}/items/3
 Content-type: application/json
 
 {"name": "updated kivi"}
@@ -33,13 +33,13 @@ Content-type: application/json
 
 
 ### GET all users
-GET http://localhost:3000/api/users
+GET {{apiurl}}/users
 
 ### Get user with id 4 (joni)
-GET http://localhost:3000/api/users/4
+GET {{apiurl}}/users/4
 
 ### Add new user
-POST http://localhost:3000/api/users
+POST {{apiurl}}/users
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
   "email": "matti.meikalainen@hotmail.com"
 }
 ### update
-PUT http://localhost:3000/api/users/1
+PUT {{apiurl}}/users/1
 Content-Type: application/json
 
 {
@@ -55,4 +55,4 @@ Content-Type: application/json
   "email": "juhani.uusi@yahoo.com"
 }
 ### deletoidaan jesse
-DELETE http://localhost:3000/api/users/6
+DELETE {{apiurl}}/users/6
